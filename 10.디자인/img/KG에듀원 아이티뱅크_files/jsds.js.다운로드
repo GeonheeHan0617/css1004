@@ -1,0 +1,546 @@
+function autoBind( jsds, saveAfterAction, fName, saveBt,  submitPage ){
+
+	
+	this.tTxt = function(txt){
+
+		var txt = $.trim(txt);
+	    if( txt == "" ){ return false; }
+	    if( typeof(txt) == "undefined" ){ return false; }
+	    if( typeof(txt) == "null" ){ return false; }
+	    return true;
+	}
+
+
+	if( this.tTxt(saveAfterAction) == false ){ saveAfterAction = ''; }
+	if( this.tTxt(fName) == false ){ fName = 'mForm'; }
+	if( this.tTxt(saveBt) == false ){ saveBt = 'saveBt'; }
+	if( this.tTxt(submitPage) == false ){ submitPage = ''; }
+
+
+	this.idx             = ''; 
+	this.inQuery         = '/_server/basicInsert.html'; 
+	this.upQuery         = '/_server/basicUpdate.html';
+
+	this.jsds            = jsds; 
+	this.saveAfterAction = saveAfterAction;
+	this.fName           = fName; 
+	this.saveBt          = saveBt;  
+    this.submitPage      = submitPage;
+
+    this.setData  = function(obj){ // object
+
+    	var that = this;
+    	if( that.tTxt(obj) == true ){
+	    	$.each(obj,function(index,obj){
+	    		if( obj.tType == 'select' || obj.tType == 'radio' ){
+	    		    that.jsds[index].arIdx = obj.arIdx;
+	    		    that.jsds[index].arTxt = obj.arTxt;
+	    		}
+	    	});
+	    }
+    	that.bind();
+    }// end setData 
+
+
+    this.setDbData = function(obj){
+    	var that = this;
+    	$.each(obj,function(index,val){
+    		if( that.tTxt( that.jsds[index] ) == true ){
+    			if( that.jsds[index].fType == 'radio' ){
+    			    $('input:radio[name='+ index +']:input[value='+ val +']').attr("checked", true);	 
+	    		}else if( that.jsds[index].fType == 'checkbox' ){
+					if( $('#'+ that.fName +' #'+ index).val() == val ){
+	    		    	$('#'+ that.fName +' #'+ index).prop( 'checked', true );	        
+					}      		
+				}else{
+	    		    $('#'+ that.fName +' #'+ index).val( val );	              		
+	    		}
+    		}
+            
+        });
+
+    }// end setDbData
+
+    this.bind = function(){
+
+    	var that = this;
+		$.each(that.jsds,function(id, obj){
+  
+			if( id == 'basic' ){
+				return true;
+			}
+			that.oneBind(id, obj);
+		}); 
+
+		that.saveAction();
+    }// end bind 
+
+    this.oneBind = function(id, obj){
+
+    	var that = this;
+    	var fType, fCls, fTxt, fAlt, fHol, fVal, arIdx, arTxt, outTxt, fTime, html, chIdx, chTxt, chT; 
+    	fType='', fCls='', fTxt='', fAlt='', fHol='', fVal='', arIdx='', arTxt='', outTxt='', fTime='1', html='';
+                           // fTxt = checkbox 일때 checked
+		
+		fType  = obj.fType;
+		if( that.tTxt(obj.fCls)   == true ){ fCls   = obj.fCls; }
+		if( that.tTxt(obj.fTxt)   == true ){ fTxt   = obj.fTxt; }
+		if( that.tTxt(obj.fAlt)   == true ){ fAlt   = obj.fAlt; }
+		if( that.tTxt(obj.fHol)   == true ){ fHol   = obj.fHol; }
+		if( that.tTxt(obj.fVal)   == true ){ fVal   = obj.fVal; }
+		if( that.tTxt(obj.arIdx)  == true ){ arIdx  = obj.arIdx; }
+		if( that.tTxt(obj.arTxt)  == true ){ arTxt  = obj.arTxt; }
+		if( that.tTxt(obj.outTxt) == true ){ outTxt = obj.outTxt; }
+		if( that.tTxt(obj.fTime)  == true ){ fTime  = obj.fTime; }
+
+		if( fType == "text" || fType == "hidden" || fType == "password" ){	
+			if( fType == 'hidden' ){
+				html += '<input type="hidden" name="'+ id +'"  id="'+ id +'"  class="'+ fCls +'" value="'+ fVal +'"  placeholder="'+ fHol +'" '+ fTxt +'>'+ outTxt;				
+			}else{
+				html += '<input type="'+ fType +'" name="'+ id +'"  id="'+ id +'"  class="'+ fCls +'" value="'+ fVal +'"  placeholder="'+ fHol +'" '+ fTxt +'>'+ outTxt;				
+			}
+			
+		}else if( fType == "file" ){
+			fTime = 1; 
+			for(var k=1 ; k<=fTime ; k++ ){
+				html += '<div><input name="attach" type="file" class="'+ fCls +'"  '+ fTxt +'></div>';
+			}
+		}else if( fType == "textarea" ){	
+			html += '<textarea name="'+ id +'" id="'+ id +'"  class="'+ fCls +'" '+ fTxt +' placeholder="'+ fHol +'" >'+ fVal +'</textarea>';
+		}else if( fType == "checkbox" ){	
+			html += '<input type="checkbox" name="'+ id +'" id="'+ id +'"   value="'+ fVal +'" '+ fTxt +'>'+ outTxt;
+		}else if( fType == "select" ){
+					
+			html += '<select name="'+ id +'" id="'+ id +'"  class="'+ fCls +'" '+ fTxt +'>';
+			
+			if( that.tTxt(obj.arIdx) == true ){
+				chIdx = obj.arIdx.split(",");
+			    chTxt = obj.arTxt.split(",");
+
+				for(i = 0; i < chTxt.length ;i++){
+					if( fVal == chIdx[i] ){
+						chT = "selected";
+					}else{
+						chT = "";
+					}
+					html += '<option value="'+ chIdx[i] +'" '+ chT +'>'+ chTxt[i] +'</option>';
+				}
+			}
+
+			html += '</select>'+ outTxt;		
+
+		}else if( fType == "radio" ){
+
+			if( that.tTxt(obj.arIdx) == true ){
+				chIdx = obj.arIdx.split(",");
+			    chTxt = obj.arTxt.split(",");
+
+				for(i = 0; i < chTxt.length ;i++){
+					if( fVal == chIdx[i] ){
+						chT = " checked ";
+					}else{
+						chT = "";
+					}
+					html += '<input type="radio" name="'+ id +'" value="'+ chIdx[i] +'" '+ chT +'>'+ chTxt[i] +' &nbsp;&nbsp;';
+				}
+			}
+
+		}
+        if(  fType == "hidden" ){
+        	$('#'+ that.fName ).append(html);
+        }else{
+        	$('#'+ that.fName +' #fm_'+ id).html(html);	
+        }
+    } // end onBind; 
+
+
+
+
+    this.saveAction = function(){
+
+    	var that = this;
+    	var nowData = that.jsds;
+
+    	$('#'+ that.fName +' #'+ that.saveBt).off('click').on("click", function(){
+
+	    	// 필수항목 체크 2
+	    	var obj, chV, inV;
+	    	$.each(nowData,function(index,obj){
+
+	    	    if( index == 'basic' ){
+					return true;
+				}
+
+				inV = $('#'+ index).val();			
+	            chV = true;
+	    		if( that.tTxt(obj.fAlt) == true ){
+	    			if( that.tTxt( inV ) == false ){
+	    				chV = false;
+	    				alert(obj.fAlt);
+	    				$('#'+ index).focus();
+	    			    return false;
+	    			}
+	    		}
+	    	});
+	         
+	    	// 등록 
+	    	if( chV == true ){
+	    		var sendData = new FormData(); 
+	    		
+	    		$.each(nowData,function(index,obj){	
+
+		    		if( index == 'basic' ){
+						$.each(obj,function(sIn,svalue){
+							if( that.tTxt(svalue) == true ){
+								sendData.append(sIn, svalue);
+							}
+						});	
+						//return true;
+					}else{
+
+						if( obj.fType == "radio" ){
+							inV = $('#'+ that.fName +' :radio[name="'+ index +'"]:checked').val();
+						}else if( obj.fType == "checkbox" ){
+							if( $('#'+ that.fName +' #'+ index).is(":checked") == true ){
+								inV = $('#'+ that.fName +' #'+ index).val();	
+							}else{
+								inV = '';	
+							}
+							
+						}else{
+							inV = $('#'+ that.fName +' #'+ index).val();	
+						}
+						
+		    		    sendData.append(index, inV);	
+					}
+		    	}); 
+
+
+				var fileTurn = '';
+				var files = $("input[name=attach]"); 
+	            for( var i=0 ; i<files.length ; i++ ){
+	            	if( that.tTxt( files[i].files[0] ) == true ){
+	            		fileTurn += i +',';
+	            		sendData.append("attach[]", files[i].files[0]);
+	            	}
+				}
+				sendData.append("fileTurn", fileTurn);
+
+		     	var ajax = new XMLHttpRequest();
+
+			    ajax.addEventListener("load", function(event){
+
+			    	alert("저장 되었습니다.");
+			    	if( that.tTxt(that.saveAfterAction) == true ){
+			    		document.location.href = that.saveAfterAction;
+			    	}else{
+			    		document.location.reload(true);
+			    	}
+			    	
+			    }, false);
+
+                /*
+				submit 페이지가 있으면 idx 상관없이 전송
+                */
+			    if( that.submitPage == '' ){
+					
+					if( that.idx == '' ){
+			    	    that.submitPage = that.inQuery;
+				    }else{
+				    	sendData.append("idx", that.idx);
+				    	that.submitPage = that.upQuery;
+				    }
+				}
+
+				ajax.open("POST", that.submitPage);    
+			    ajax.send(sendData);     
+		    }
+
+	    });		
+
+    	// 페이지 실행함수 실행 
+    	pageAction();	
+
+    } // end save
+}
+
+
+function nl2br(str){  
+    return str.replace(/\n/g, "<br />");  
+} 
+
+var trainJsds = {};
+trainJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"train", uploadFolder:""}
+trainJsds.name      = { fType:"text", fAlt:"훈련인증명을 입력해야 합니다."}
+trainJsds.code      = { fType:"text", fTxt:" readonly "}
+trainJsds.cat1      = { fType:"select", arIdx:",1,2,3", arTxt:"대분류,01,04,10", fVal:""}
+trainJsds.cat2      = { fType:"select", arIdx:",1,2,3,4", arTxt:"중분류,01,02,03,04", fVal:""}
+trainJsds.cat3      = { fType:"select", arIdx:",1,2,3", arTxt:"소분류,01,02,03", fVal:""}
+trainJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly "}
+trainJsds.term      = { fType:"text",  fTxt:" style='width:100%' "}
+trainJsds.kikwan    = { fType:"text",  fTxt:" style='width:100%' "}
+trainJsds.daesang   = { fType:"text",  fTxt:" style='width:100%' "}
+trainJsds.ctype     = { fType:"select", arIdx:"1,2,3,4", arTxt:"공개교육,위탁교육,특강,기타", fVal:""}
+trainJsds.money     = { fType:"text",  fTxt:" style='width:70px' onkeyup='onlyNumber(this)' ", fAlt:"교육비를 입력해야 합니다.", outTxt:' * 숫자만입력'}
+trainJsds.area      = { fType:"select", arIdx:"1,2,3", arTxt:"1교육장,2교육장,기타", fVal:""}
+trainJsds.person    = { fType:"text",  fTxt:" style='width:100%' "}
+
+trainJsds.curicu    = { fType:"textarea",  fTxt:" style='width:100%;height:100px' "}
+trainJsds.info      = { fType:"textarea",  fTxt:" style='width:100%;height:100px' "}
+trainJsds.purpose   = { fType:"textarea",  fTxt:" style='width:100%;height:100px' "}
+
+var tsinfoJsds = {};
+tsinfoJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"testinfo", uploadFolder:""}
+tsinfoJsds.class     = { fType:"hidden"}
+tsinfoJsds.subject   = { fType:"hidden"}
+tsinfoJsds.name      = { fType:"text", fAlt:"평가정보명을 입력해야 합니다."}
+tsinfoJsds.code      = { fType:"text", fTxt:" readonly "}
+tsinfoJsds.gubun1    = { fType:"text"}
+tsinfoJsds.gubun2    = { fType:"text"}
+tsinfoJsds.gubun3    = { fType:"text"}
+tsinfoJsds.gubun4    = { fType:"text"}
+tsinfoJsds.testDay   = { fType:"text", fCls:"input_100", fTxt:" readonly " }
+tsinfoJsds.testTime  = { fType:"text", fCls:"input_100"}
+tsinfoJsds.testVal   = { fType:"text", fCls:"input_100"}
+tsinfoJsds.sujun     = { fType:"text", fCls:"input_100"}
+tsinfoJsds.tType     = { fType:"select", arIdx:"1,2", arTxt:"필답형,평가자체크리스트", fVal:""}
+
+
+var subjectJsds = {};
+subjectJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"subject", uploadFolder:""}
+subjectJsds.class     = { fType:"select", fCls:"", fTxt:" onchange='classChange(this)' ", fAlt:"등록과정을 선택해야 합니다.", arIdx:"", arTxt:"", fVal:""}
+subjectJsds.name      = { fType:"text", fAlt:"교과목명을 입력해야 합니다."}
+subjectJsds.code      = { fType:"text", fTxt:" readonly "}
+subjectJsds.teacher   = { fType:"select", fAlt:"강사를 선택해야 합니다."}
+subjectJsds.ncc       = { fType:"select", arIdx:"1,2,3", arTxt:"기초소양,NCS,비NCS", fVal:"1"}
+subjectJsds.unit      = { fType:"text"}
+
+subjectJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly "}
+subjectJsds.stTime    = { fType:"text"}
+subjectJsds.enTime    = { fType:"text"}
+subjectJsds.lecNum    = { fType:"text"}
+subjectJsds.lecPoint  = { fType:"text"}
+
+
+
+
+var lawdocuJsds = {};
+lawdocuJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"lawdocu", uploadFolder:"lawdocu"}
+lawdocuJsds.corpIdx   = { fType:"hidden", fAlt:"업체를 선택해야  합니다." }
+lawdocuJsds.subject   = { fType:"text", fCls:"", fTxt:" style='width:100%' ", fAlt:"제목을 입력해야  합니다."}
+lawdocuJsds.attach    = { fType:"file", fCls:"form-control input-sm" }
+
+
+
+var sangdamJsds = {};
+sangdamJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"sangdam", uploadFolder:""}
+sangdamJsds.method    = { fType:"select", arIdx:"1,2", arTxt:"전화,방문"}
+sangdamJsds.service   = { fType:"select", arIdx:"1,2,3", arTxt:"특강/상품권,무료교육,기타"}
+sangdamJsds.name      = { fType:"text", fAlt:"회사명을 입력해야  합니다."}
+sangdamJsds.busino    = { fType:"text"}
+sangdamJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly "}
+sangdamJsds.man       = { fType:"text"}
+sangdamJsds.part      = { fType:"text"}
+sangdamJsds.grade     = { fType:"text"}
+sangdamJsds.phone     = { fType:"text"}
+sangdamJsds.mobile    = { fType:"text"}
+sangdamJsds.email     = { fType:"text"}
+sangdamJsds.memo      = { fType:"textarea", fCls:"", fTxt:" style='width:100%;height:100px' " }
+sangdamJsds.etc       = { fType:"textarea", fCls:"", fTxt:" style='width:100%;height:100px' " }
+
+
+var refundJsds = {};
+refundJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"refund", uploadFolder:""}
+refundJsds.corpIdx   = { fType:"hidden" }
+refundJsds.corpName  = { fType:"text", fCls:"", fTxt:" readonly ", fAlt:"기업체를 선택해야  합니다." }
+refundJsds.corpCode  = { fType:"text", fCls:"", fTxt:" readonly " }
+refundJsds.class     = { fType:"select", arIdx:"", arTxt:"", fAlt:"교육과정을 선택해야 합니다." }
+refundJsds.refunDay  = { fType:"text", fCls:"input_100", fTxt:" readonly ", fAlt:"환급일을 입력해야 합니다."}
+refundJsds.inName    = { fType:"text", fCls:"input_80", fTxt:"" }
+refundJsds.refunPrice= { fType:"text", fCls:"input_80", fTxt:" style='text-align:right' " }
+refundJsds.refunNum  = { fType:"text", fCls:"input_80", fTxt:" style='text-align:right' " }
+refundJsds.refunSum  = { fType:"text", fCls:"input_80", fTxt:" style='text-align:right' " }
+refundJsds.memo      = { fType:"textarea", fCls:"", fTxt:" style='width:100%;height:100px' " }
+refundJsds.receiptDay = { fType:"text", fCls:"input_100", fTxt:" readonly "}
+refundJsds.gubun      = { fType:"select", arIdx:"1,2", arTxt:"개인,기업"}
+refundJsds.receiptCat = { fType:"select", arIdx:"1,2", arTxt:"청구,영수"}
+refundJsds.account    = { fType:"text" }
+refundJsds.accName    = { fType:"text" }
+
+
+var counselJsds = {};
+counselJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"counsel", uploadFolder:""}
+counselJsds.class     = { fType:"select", fAlt:"교육과정을 선택해야  합니다.", fTxt: " onchange='classChange(this)' " , arIdx:"", arTxt:"" }
+counselJsds.student   = { fType:"select", fAlt:"교육생을 선택해야  합니다.", fTxt: " onchange='stuChange(this)' ", arIdx:"", arTxt:"" }
+counselJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly style='border:1px solid #ccc;' ", fAlt:"상담일을 입력해야 합니다."}
+counselJsds.memo      = { fType:"textarea", fCls:"", fAlt:"상담내용을 입력해야  합니다.", fTxt:" style='width:100%;height:100px' " }
+counselJsds.reply     = { fType:"textarea", fCls:"", fTxt:" style='width:100%;height:100px' " }
+
+var kangJsds = {};
+kangJsds.basic     = { outField:"outField,table,attach,docu,uploadFolder,fileTurn", table:"kangsa", uploadFolder:"kangsa/"}
+kangJsds.name      = { fType:"text", fAlt:"강사이름을 입력해야 합니다." }
+kangJsds.code      = { fType:"text", fTxt:" readonly " }
+kangJsds.id        = { fType:"text", fAlt:"아이디를 입력해야 합니다." }
+kangJsds.pass      = { fType:"text", fAlt:"비밀번호를 입력해야 합니다.", fValue:"", fHolder:''}
+kangJsds.jumin1    = { fType:"text" }
+kangJsds.jumin2    = { fType:"text" }
+kangJsds.birType   = { fType:"select", arIdx:"1,2", arTxt:"양력,음력" }
+kangJsds.birthDay  = { fType:"text", fCls:"input_100", fTxt:" readonly " }
+kangJsds.phone     = { fType:"text" }
+kangJsds.zip       = { fType:"text", fCls:"form-control", fTxt:" style='width:100px;float:left' readonly  " } 
+kangJsds.addr1     = { fType:"text", fCls:"form-control", fTxt:" readonly  " } 
+kangJsds.addr2     = { fType:"text", fCls:"form-control" } 
+kangJsds.diploma   = { fType:"text" }
+kangJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:"" }
+kangJsds.outDay    = { fType:"text", fCls:"input_100", fTxt:"" }
+kangJsds.security  = { fType:"radio", arIdx:"1,2,3,4,5", arTxt:"A,B,C,D,E", fVal:"1"}
+kangJsds.grade     = { fType:"radio", arIdx:"1,2,3,4", arTxt:"A,B,C,비적용", fVal:"1"}
+kangJsds.pay       = { fType:"text", fCls:"input_100" }
+kangJsds.upDay     = { fType:"text", fCls:"input_100", fTxt:" readonly " }
+
+/*
+kangJsds.attach    = { fType:"file", fCls:"form-control input-sm" }
+kangJsds.docu      = { fType:"file", fCls:"form-control input-sm" }
+*/
+
+var empJsds = {};
+empJsds.basic     = { outField:"outField,table,attach,docu,uploadFolder,fileTurn", table:"emp", uploadFolder:"emp/"}
+empJsds.name      = { fType:"text", fCls:"", fTxt:"", fAlt:"직원이름을 입력해야 합니다." }
+empJsds.code      = { fType:"text", fCls:"", fTxt:" readonly " }
+empJsds.id        = { fType:"text", fCls:"", fTxt:"", fAlt:"아이디를 입력해야 합니다." }
+empJsds.pass      = { fType:"text", fCls:"", fTxt:"", fAlt:"비밀번호를 입력해야 합니다." }
+empJsds.jumin1    = { fType:"text" }
+empJsds.jumin2    = { fType:"text" }
+empJsds.birType   = { fType:"select", arIdx:"1,2", arTxt:"양력,음력" }
+empJsds.birthDay  = { fType:"text", fCls:"input_80", fTxt:" readonly "}
+empJsds.phone     = { fType:"text" }
+empJsds.mobile     = { fType:"text" }
+empJsds.email     = { fType:"text" }
+empJsds.zip       = { fType:"text", fCls:"form-control", fTxt:" style='width:100px;float:left' readonly  " } 
+empJsds.addr1     = { fType:"text", fCls:"form-control", fTxt:" readonly  " } 
+empJsds.addr2     = { fType:"text", fCls:"form-control" } 
+empJsds.diploma   = { fType:"text" }
+empJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly " }
+empJsds.outDay    = { fType:"text", fCls:"input_100", fTxt:" readonly " }
+empJsds.security  = { fType:"radio", arIdx:"1,2,3,4,5", arTxt:"A,B,C,D,E", fVal:"1"}
+
+/*
+empJsds.attach    = { fType:"file", fCls:"form-control input-sm" }
+empJsds.docu      = { fType:"file", fCls:"form-control input-sm" }
+*/
+
+
+var corPatrJsds = {};
+corPatrJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"corporationSub", uploadFolder:"corporation/"}
+corPatrJsds.corpIdx      = { fType:"hidden"}
+corPatrJsds.cat          = { fType:"hidden"}
+corPatrJsds.name         = { fType:"text", fAlt:"이름을 입력해야 합니다." }
+corPatrJsds.part         = { fType:"text", fAlt:"부서를 입력해야 합니다." }
+corPatrJsds.email        = { fType:"text" }
+corPatrJsds.phone        = { fType:"text" }
+corPatrJsds.mobile       = { fType:"text" }
+corPatrJsds.fax          = { fType:"text" }
+corPatrJsds.etc          = { fType:"text", fTxt:" style='width:100%' " }
+
+
+var corpJsds = {};
+corpJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"corporation", uploadFolder:"corporation/"}
+corpJsds.code      = { fType:"text", fTxt:" readonly " }
+corpJsds.name      = { fType:"text", fAlt:"회사이름을 입력해야 합니다." }
+corpJsds.type      = { fType:"select", arIdx:"1,2,3,4", arTxt:"50명미만,50명이상,1000명미만,1000명이상" }
+corpJsds.busi1     = { fType:"text", fCls:"input_50", }
+corpJsds.busi2     = { fType:"text", fCls:"input_50"}
+corpJsds.busi3     = { fType:"text", fCls:"input_50"}
+corpJsds.inputName = { fType:"text" }
+corpJsds.inputBank = { fType:"text" }
+corpJsds.bankNum   = { fType:"text" }
+corpJsds.empSum    = { fType:"text" }
+corpJsds.zip       = { fType:"text", fCls:"form-control", fTxt:" style='width:100px;float:left' readonly  "} 
+corpJsds.addr1     = { fType:"text", fCls:"form-control", fTxt:" readonly  " } 
+corpJsds.addr2     = { fType:"text", fCls:"form-control" } 
+corpJsds.memo      = { fType:"textarea", fCls:"", fTxt:" style='width:100%;height:60px' " }
+corpJsds.attach    = { fType:"file", fCls:"form-control input-sm" }
+
+corpJsds.gubun     = { fType:"select", arIdx:"1,2", arTxt:"회원사,일반사" }
+corpJsds.uptae     = { fType:"text" }
+corpJsds.jongmok   = { fType:"text" }
+corpJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly "}
+corpJsds.regedDay  = { fType:"text", fCls:"input_100", fTxt:" readonly "}
+corpJsds.sujun     = { fType:"select", arIdx:"1,2,3,4,5,6", fTxt:" onchange='sujunChange(this)' ", arTxt:"10명당 1명 무료,5%할인,10%할인,15%할인,20%할인,수기입력" }
+corpJsds.sujunTxt  = { fType:"text", fTxt:" style='width:60px;' " }
+corpJsds.accRec    = { fType:"checkbox", fVal:"1", outTxt:"입금확인문자" }
+corpJsds.accRec2   = { fType:"checkbox", fVal:"1", outTxt:"계산서발행문자" }
+
+corpJsds.hrRec     = { fType:"checkbox", fVal:"1", outTxt:"접수문자" }
+corpJsds.hrRec2     = { fType:"checkbox", fVal:"1", outTxt:"교육안내메일" }
+corpJsds.hrRec3     = { fType:"checkbox", fVal:"1", outTxt:"교육감사문자" }
+corpJsds.hrRec4     = { fType:"checkbox", fVal:"1", outTxt:"결과보고서메일" }
+
+corpJsds.stuRec     = { fType:"checkbox", fVal:"1", outTxt:"접수문자" }
+corpJsds.stuRec2     = { fType:"checkbox", fVal:"1", outTxt:"교육안내메일" }
+corpJsds.stuRec3     = { fType:"checkbox", fVal:"1", outTxt:"교육감사문자" }
+corpJsds.stuRec4     = { fType:"checkbox", fVal:"1", outTxt:"결과보고서메일" }
+
+
+var stdJsds = {};
+stdJsds.basic     = { outField:"outField,table,attach,uploadFolder,fileTurn", table:"student", uploadFolder:"student/"}
+stdJsds.class     = { fType:"select", fCls:"", fTxt:" onchange='classChange(this)' ", fAlt:"등록과정을 선택해야 합니다.", arIdx:"", arTxt:""}
+stdJsds.company   = { fType:"select", fCls:"", arIdx:"", arTxt:"", fAlt:"회사를 선택해야 합니다."}
+stdJsds.code      = { fType:"text", fTxt:" readonly "}
+stdJsds.inDay     = { fType:"text", fCls:"input_100", fTxt:" readonly ", fAlt:"등록일을 입력해야 합니다."}
+stdJsds.payDay    = { fType:"text", fCls:"input_100"}
+stdJsds.sStat     = { fType:"select", fCls:"", arIdx:"1,2,3,4,5,6", arTxt:"접수,수강,수료,미수료,제적,취소"}
+stdJsds.payType   = { fType:"select", fCls:"", arIdx:",1,2,3", arTxt:"선택,신용카드,무통장입금,현금결제"}
+stdJsds.payOk     = { fType:"select", fCls:"", arIdx:",1,2", arTxt:"선택,입금완료,미입금"}
+stdJsds.endDay    = { fType:"text", fCls:"input_100"}
+stdJsds.banDay    = { fType:"text", fCls:"input_100"}
+stdJsds.banReason = { fType:"text"}
+stdJsds.name      = { fType:"text", fAlt:"이름을 입력해야 합니다."}
+stdJsds.jumin1    = { fType:"text", fCls:"input_60", fTxt:" maxlength='6' "}
+stdJsds.jumin2    = { fType:"text", fCls:"input_60", fTxt:" maxlength='7' "}
+stdJsds.part      = { fType:"text"}
+stdJsds.grade     = { fType:"text"}
+stdJsds.phone     = { fType:"text"}
+stdJsds.mobile    = { fType:"text"}
+stdJsds.email     = { fType:"text"}
+stdJsds.zip       = { fType:"text", fCls:"form-control", fTxt:" style='width:100px;float:left' readonly  "} 
+stdJsds.addr1     = { fType:"text", fCls:"form-control", fTxt:" readonly  "} 
+stdJsds.addr2     = { fType:"text", fCls:"form-control"} 
+stdJsds.memo      = { fType:"textarea", fTxt:" style='width:100%;height:100px' "}
+stdJsds.attach    = { fType:"file", fCls:"form-control input-sm"}
+
+var classJsds = {};
+classJsds.basic       = { outField:'outField,table,uploadFolder,fileTurn', table:'class', uploadFolder:'' }
+classJsds.code        = { fType: 'text', fTxt: 'readonly'}
+classJsds.name        = { fType: 'text', fAlt: '이름을 입력해야 합니다.'}
+classJsds.gubun       = { fType: 'select', arIdx: '1,2', arTxt: '사업주교육,외부교육', fTxt:" onchange='gubunChange()' "}
+classJsds.dayNum      = { fType: 'select', arIdx: '1,2,3', arTxt: '1일,2일,3일이상'}
+classJsds.train       = { fType: 'select', arIdx: '', arTxt: ''}
+classJsds.company     = { fType: 'select', arIdx: '', arTxt: ''}
+classJsds.man         = { fType: 'select', arIdx: '', arTxt: ''}
+classJsds.stDay       = { fType: 'text', fCls: 'input_80', fTxt: 'readonly'}
+classJsds.enDay       = { fType: 'text', fCls: 'input_80', fTxt: 'readonly'}
+classJsds.area        = { fType:"select", arIdx:",1,2,3", arTxt:"선택,1교육장,2교육장,기타", fVal:""}
+classJsds.room        = { fType: 'text'}
+classJsds.time        = { fType: 'text'}
+classJsds.refund      = { fType: 'select', arIdx: '1,2', arTxt: '환급,비환급'}
+classJsds.fee50U_1    = { fType: 'text', fCls: 'input_80', fTxt: ' style="text-align:right" readonly ', outTxt:' 원'}
+classJsds.fee50U_2    = { fType: 'text', fCls: 'input_80', fTxt: 'style="text-align:right"', outTxt:' 원', fTxt:" onkeyup='viewPrice()' "}
+classJsds.fee50O_1    = { fType: 'text', fCls: 'input_80', fTxt: ' style="text-align:right" readonly ', outTxt:' 원'}
+classJsds.fee50O_2    = { fType: 'text', fCls: 'input_80', fTxt: 'style="text-align:right"', outTxt:' 원', fTxt:" onkeyup='viewPrice()' "}
+classJsds.fee1000U_1  = { fType: 'text', fCls: 'input_80', fTxt: ' style="text-align:right" readonly ', outTxt:' 원'}
+classJsds.fee1000U_2  = { fType: 'text', fCls: 'input_80', fTxt: 'style="text-align:right"', outTxt:' 원', fTxt:" onkeyup='viewPrice()' "}
+classJsds.fee1000O_1  = { fType: 'text', fCls: 'input_80', fTxt: ' style="text-align:right" readonly ', outTxt:' 원'}
+classJsds.fee1000O_2  = { fType: 'text', fCls: 'input_80', fTxt: 'style="text-align:right"', outTxt:' 원', fTxt:" onkeyup='viewPrice()' "}
+classJsds.lunch       = { fType: 'text', fCls: 'input_80', fTxt: 'style="text-align:right"', outTxt:' 원'}
+classJsds.num         = { fType: 'text', fTxt: 'readonly'}
+classJsds.run         = { fType: 'select', arIdx: '1,2', arTxt: '접수중,접수종료'}
+classJsds.train       = { fType: 'select', arIdx: '', fAlt: '훈련인증명을 선택해야 합니다.', arTxt: '', fTxt:" onchange='trainChange()' "}
+classJsds.turn        = { fType: 'text', fAlt: '회차를 입력해야 합니다.', fTxt:" style='width:60px' "}
+
+
+
+
+
+
+

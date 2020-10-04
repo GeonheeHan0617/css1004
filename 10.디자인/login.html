@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    
+    <!-- j쿼리 순서 추가 (순서변동) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    
+    <!-- 순서 바꾸면 동작됨 -->
+    <script src="js/bootstrap.js"> </script>  
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css">
+
+<style>
+    
+  
+.titlebox{width: 250px; text-align: center; height: 40px; line-height: 40px; 
+        margin: 70px auto; border-top: 1px solid #e1e1e1; border-bottom: 1px solid  #e1e1e1  ;}  
+        .login-form{margin: 0 auto; float: none;} /* 가운데 정렬 */
+        /* 박스 쉐도우: 그림자가 가로로 떨어진 간격, 세로로 떨어진 간격, 흐릿도 정도, 그림자 색상 */
+        .login-form form{box-shadow: 0px 8px 16px #00da6d ; padding: 50px;}
+        
+        
+        @media(max-width: 767PX) { 
+                .login-form{padding: 50px 10px;}
+        }
+
+        .form-control {border-radius: 0px; } /* 윤곽 */
+        .form-control:focus{border-color: #555555 ;}
+</style>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-inverse">
+          <div class="container-fluid">
+            <div class="navbar-header">
+        
+        
+        
+        
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+        
+        
+              <!-- 로고를 넣는 영역 -->
+              <a class="navbar-brand" href="http://bootstrapk.com/components/"><img src="img/logo.svg" width="30"></a>
+            </div>
+        
+            <!-- 네비바 안에 포함되는 콘탠츠 -->
+            <div class="collapse navbar-collapse" id="myNavbar">
+              <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Page 1</a></li>
+                <li><a href="#">Page 2</a></li>
+                <li><a href="#">Page 3</a></li>
+              </ul>
+        
+        
+              <!-- 우측 -->
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+        
+                    <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-share"></span>  로그인</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>  회원가입</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-modal-window"></span>  메인화면</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>  About</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">상품 배송 및 조회</li>
+                    <li><a href="#">배송 주소지 변경</a></li>
+                    <li><a href="#">배송 이력</a></li>
+                    <li><a href="#">불만 사항</a></li>
+                    <li><a href="#">공지 사항</a></li>
+        
+                  </ul>
+                </li>
+              </div>
+              
+              
+         
+            </div>
+          </div>
+        </nav>
+        
+        
+             <!-- <br>    
+        
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+        
+                    <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">소개</a></li>
+                    <li><a href="#">다른 경로</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Dropdown header 2</li>
+                    <li><a href="#">About Us</a></li>
+                  </ul>
+                </li>
+              </div>
+         -->
+        
+        
+                <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+              <!-- </ul> -->
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-9 col-lg-6  login-form">
+    
+                    <div class="titlebox">로그인 </div>
+                    <form action="">
+                        <div class="login-form">
+                            <div class="form-group">
+                                <label>아이디</label>
+                                <input type="text" class="form-control" placeholder="아이디는 8글자 이상 16글자 이하로 입력하세요">
+                            </div>
+                        </div>
+    
+                        <div class="form-group">
+                            <label>비밀번호</label>
+                            <input type="password" class="form-control" placeholder="비밀번호는 영문 대소문자 숫자 포함해서 8~16자리 사이로 입력하세요">
+                        </div>
+
+    
+                        <div class="form-group">
+                            <button type="button" class="btn btn-primary btn-block">회원가입</button>
+                        </div>
+    
+                        <div class="form-group">
+                            <button type="button" class="btn btn-success btn-block">로그인</button>
+                        </div>
+    
+                    </form>
+                </div>
+    
+            </div>
+        </div>
+    
+    </section>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="footer-menu">
+                    <li><a href="">고객센터</a></li>
+                    <li><a href="">이용약관</a></li>
+                    <li><a href="">개인정보취급방침</a></li>
+                    <li><a href="">개인정보</a></li>
+
+                </ul>
+            </div>
+            <div class="col-xs-12 col-lg-8 copyright">
+                <a href="#">
+                <img src="img/쿠팡.png" width="250">
+              
+            </a>    
+            <address> 
+
+              쿠팡(주) | 대표이사 : 김범석,고명주,박대준
+              서울시 송파구 송파대로 570
+              사업자 등록번호 : 120-88-00767
+              통신판매업신고 : 2017-서울송파-0680
+            https://www.coupang.com/
+              <br>
+            365고객센터 | 전자금융거래분쟁처리담당
+            1577-7011
+            서울시 송파구 송파대로 570
+            email : help@coupang.com
+
+            </address>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    </body>
+    </html>

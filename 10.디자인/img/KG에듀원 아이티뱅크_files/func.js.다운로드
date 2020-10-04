@@ -1,0 +1,321 @@
+function onlynum(objtext1, msg){
+	var inText = objtext1.value;
+	var ret;
+
+	for (var i = 0; i < inText.length; i++) {
+    ret = inText.charCodeAt(i);
+		if (!((ret > 47) && (ret < 58))){
+			if (msg == "1"){
+				alert("숫자만 입력이 가능합니다.");
+				objtext1.value = "";
+				objtext1.focus();
+			}
+			return false;
+		}
+	}
+	return true;
+}
+
+function NumberCheck(n1){
+	var NumberV = n1.value;
+	if (isNaN(NumberV))
+	{
+		alert("숫자만 등록가능합니다.");
+		n1.value = "";
+		n1.focus();
+		return false;
+	}
+}
+
+function fileCheck(f1){
+	var fileext = f1.value;
+	fileext = fileext.slice(fileext.indexOf(".") + 1).toLowerCase();
+
+	if (fileext != "jpg" && fileext != "jpeg" && fileext != "png" && fileext != "gif" && fileext != "bmp")
+	{
+		alert("이미지파일만 등록가능합니다.");
+		return false;
+	}
+
+}
+
+function sendit1(){
+	if (document.jiwon.name.value=="")
+	{ 
+	alert("이름을 입력하세요"); 
+	document.jiwon.name.focus();
+	return; 
+	} 
+
+	if (document.jiwon.jumin1.value=="")
+	{ 
+	alert("주민번호를 입력하세요"); 
+	document.jiwon.jumin1.focus();
+	return; 
+	} 
+
+	if (document.jiwon.m1.value=="" || document.jiwon.m2.value=="" || document.jiwon.m3.value=="")
+	{ 
+	alert("휴대폰을 입력하세요"); 
+	document.jiwon.m1.focus();
+	return; 
+	} 
+
+	if (document.jiwon.course.value=="")
+	{ 
+	alert("과정명을 선택하세요"); 
+	document.jiwon.course.focus();
+	return; 
+	} 
+
+	document.jiwon.submit();
+}
+
+function sendit11(){
+	if (document.jiwon.name.value=="")
+	{ 
+	alert("이름을 입력하세요"); 
+	document.jiwon.name.focus();
+	return; 
+	} 
+
+	if (document.jiwon.jumin1.value=="")
+	{ 
+	alert("주민번호를 입력하세요"); 
+	document.jiwon.jumin1.focus();
+	return; 
+	} 
+
+	if (document.jiwon.m1.value=="" || document.jiwon.m2.value=="" || document.jiwon.m3.value=="")
+	{ 
+	alert("휴대폰을 입력하세요"); 
+	document.jiwon.m1.focus();
+	return; 
+	} 
+
+
+	document.jiwon.submit();
+}
+
+function sendit2(){
+	if (document.course.cname.value=="")
+	{ 
+	alert("과정명을 입력하세요"); 
+	document.course.cname.focus();
+	return; 
+	} 
+
+	if (isNaN(document.course.CDaySum.value))
+	{
+	alert("교육시간은 숫자만 입력하세요"); 
+	document.course.CDaySum.focus();
+	return; 
+	}
+
+	if (isNaN(document.course.CHour.value))
+	{
+	alert("교시는 숫자만 입력하세요"); 
+	document.course.CHour.focus();
+	return; 
+	}
+
+	if (isNaN(document.course.cinwon.value))
+	{
+	alert("모집인원은 숫자만 입력하세요"); 
+	document.course.cinwon.focus();
+	return; 
+	}
+	
+	document.course.submit();
+}
+
+function sendit_course(){
+	if (document.course.cname.value=="")
+	{ 
+	alert("과정명을 입력하세요"); 
+	document.course.cname.focus();
+	return; 
+	} 
+
+	if (isNaN(document.course.CDaySum.value))
+	{
+	alert("교육시간은 숫자만 입력하세요"); 
+	document.course.CDaySum.focus();
+	return; 
+	}
+
+	if (isNaN(document.course.CHour.value))
+	{
+	alert("교시는 숫자만 입력하세요"); 
+	document.course.CHour.focus();
+	return; 
+	}
+
+	if (isNaN(document.course.cinwon.value))
+	{
+	alert("모집인원은 숫자만 입력하세요"); 
+	document.course.cinwon.focus();
+	return; 
+	}
+	if (!confirm("과정복사시 해당과정의 교과목도 같이 복사됩니다."))
+	{
+		return; 
+	}
+
+	document.course.submit();
+}
+
+function sendit3(){
+	if (document.teacher.tname.value=="")
+	{ 
+	alert("교수이름을 입력하세요"); 
+	document.teacher.tname.focus();
+	return; 
+	} 
+
+	document.teacher.submit();
+}
+
+function sendit31(){
+	if (document.Cite.Position1.value=="")
+	{ 
+	alert("직위를 입력하세요"); 
+	document.Cite.Position1.focus();
+	return; 
+	} 
+
+	if (document.Cite.Name1.value=="")
+	{ 
+	alert("이름을 입력하세요"); 
+	document.Cite.Name1.focus();
+	return; 
+	} 
+
+	document.Cite.submit();
+}
+
+function sendit4(){
+	if (document.counsel.cname.value=="")
+	{ 
+	alert("접수자를 입력하세요"); 
+	document.counsel.cname.focus();
+	return; 
+	} 
+
+	if (document.counsel.counselday.value=="")
+	{ 
+	alert("상담날짜를 입력하세요"); 
+	document.counsel.counselday.focus();
+	return; 
+	} 
+
+	if (document.counsel.gname.value=="")
+	{ 
+	alert("지원자성명을 입력하세요"); 
+	document.counsel.gname.focus();
+	return; 
+	} 
+
+	if ((document.counsel.course.value=="" || document.counsel.course.value=="문의" || document.counsel.course.value=="재직자과정문의" || document.counsel.course.value=="실업자과정문의") && (document.counsel.Result.value=="접수" || document.counsel.Result.value=="수강"))
+	{
+	alert("과정명이 기타과정문의일 경우 접수가 되지않습니다. 과정을 선택하세요~"); 
+	document.counsel.course.focus();
+	return;
+	}
+
+	document.counsel.submit();
+}
+
+function sendit41(){
+	if (document.TestInfo.strTStyle.value=="")
+	{ 
+	alert("평가유형을 선택하세요"); 
+	document.TestInfo.strTStyle.focus();
+	return; 
+	} 
+	if (document.TestInfo.strTCnt1.value=="" ||  document.TestInfo.strTCnt1.value=="0")
+	{ 
+	alert("문항수를 입력하세요"); 
+	document.TestInfo.strTCnt1.focus();
+	return; 
+	} 
+
+	document.TestInfo.submit();
+}
+
+function sendit411(){
+	var tstyle = document.TestInfo.strTStyle;
+	var ostyle = document.TestInfo.oldTStyle;
+	var tcnt1  = document.TestInfo.strTCnt1;
+	var tcnt2  = document.TestInfo.strTCnt2;
+	var ocnt1  = document.TestInfo.oldTCnt1;
+	var ocnt2  = document.TestInfo.oldTCnt2;
+
+	if (tstyle.value=="")
+	{ 
+	alert("평가유형을 선택하세요"); 
+	tstyle.focus();
+	return; 
+	} 
+	if (tcnt1.value=="" ||  tcnt1.value=="0")
+	{ 
+	alert("문항수를 입력하세요"); 
+	tcnt1.focus();
+	return; 
+	} 
+
+	if (tstyle.value != "필답형(혼합)")
+	{
+	if ((tstyle.value==ostyle.value)&&(parseInt(ocnt1.value) > parseInt(tcnt1.value)))
+	{
+		if (!confirm("문항수가 감소하면 일부 문제가 삭제될 수 있습니다. 그래도 수정하시겠습니까?"))
+		{
+			tcnt1.focus();
+			return; 
+		}
+	
+	}
+	}
+	else
+	{
+	if ((tstyle.value==ostyle.value)&&((parseInt(ocnt1.value)+parseInt(ocnt2.value)) > (parseInt(tcnt1.value)+parseInt(tcnt2.value))))
+	{
+		if (!confirm("문항수가 감소하면 일부 문제가 삭제될 수 있습니다. 그래도 수정하시겠습니까?"))
+		{
+			tcnt1.focus();
+			return; 
+		}
+	
+	}
+	}
+
+	document.TestInfo.submit();
+}
+
+function goPopup(){
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("../zip/jusoP.asp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+}
+
+
+function jusoCallBack(roadFullAddr, zipNo, jibunAddr){
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		document.jiwon.addr.value = roadFullAddr;
+		document.jiwon.zipcode.value = zipNo;
+		document.jiwon.jibunAddr.value = jibunAddr;
+}
+
+
+function goPopup_counsel(){
+		// 주소검색을 수행할 팝업 페이지를 호출합니다.
+		// 호출된 페이지(jusopopup.jsp)에서 실제 주소검색URL(http://www.juso.go.kr/addrlink/addrLinkUrl.do)를 호출하게 됩니다.
+		var pop = window.open("../zip/jusoP_counsel.asp","pop","width=570,height=420, scrollbars=yes, resizable=yes"); 
+}
+
+function jusoCallBack_counsel(roadFullAddr, zipNo, jibunAddr){
+		// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
+		document.counsel.addr.value = roadFullAddr;
+		document.counsel.zipcode.value = zipNo;
+		document.counsel.jibunAddr.value = jibunAddr;
+}

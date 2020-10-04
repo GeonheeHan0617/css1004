@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+
+        *{padding: 0; margin: 0;
+        }
+
+        ul, li {list-style: none;
+        }
+
+        header {position: fixed; top:0px; left: 0; width: 100%; z-index:10;}
+
+
+        .logo{ text-align: center; background-color: whitesmoke; 
+        }
+
+        .menu-list { background-color: black; text-align: center;
+        }
+
+        .menu-list li {display: inline-block; padding: 30px 30px;  border: 1px solid black;
+        }
+
+        .menu-list li a {text-decoration: none; color: whitesmoke;
+        }
+
+        .menu-list li a:hover { background-color: #7c7c7c; color: wheat;
+        }
+
+        .menu-list li a { text-decoration: none; color: cornsilk;
+        }
+
+/* 본문 */
+        section{ background-color:  rgb(35, 155, 224); height: 1000px; margin-top: 161px
+        }
+ 
+        /* 사이드메뉴 */
+        .side{
+        background-color: rgb(17, 17, 1); float: right; text-align: center; right: 0px; top:100px; /* position의 우선순위 z-index */
+            z-index: 20;
+        }
+
+        .side-list{ background-color: rgb(8, 7, 0);
+        }
+
+        .side-list li{ color: rgb(251, 255, 0); padding: 20px 10px; 
+        }
+
+        .side-list li a { text-decoration: none; color: rgb(255, 238, 0);    display: inline-block; border-bottom:  1px white;
+           
+        }
+
+        .side-list li a:hover {background-color: #b4ac62; color:orangered; 
+        }
+
+        .side-list li a p:hover {background-color: rgb(21, 255, 0); color:rgb(255, 251, 0); 
+        }
+
+
+
+    </style>
+
+
+</head>
+<body>
+    
+    <header>
+        <div class="logo">
+            <img src="img/bgimg.png">
+
+        </div>
+        <nav>
+            <ul class="menu-list">
+                <li><a href="">메뉴 1</a></li>
+                <li><a href="">메뉴 2</a></li>
+                <li><a href="">메뉴 3</a></li>
+                <li><a href="">메뉴 4</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <!-- 사이드 메뉴 -->
+    <aside class="side">
+        <ul class="side-list">
+            <li><a href="">
+                    <p>카톡 <br>ex>kkk123</p>
+             
+                </a></li>
+            <li><a href="">전화번호</a></li>
+            <li><a href="">메뉴1</a></li>
+            <li><a href="">메뉴2</a></li>
+        </ul>
+        
+    </aside>
+
+
+
+    <section>
+
+
+    </section>
+
+</body>
+</html>

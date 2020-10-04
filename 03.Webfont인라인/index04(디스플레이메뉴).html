@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .box2{ /* box2 안에있는 전체의 구조의 특징 */
+            border: 1px solid rgb(146, 125, 223) none;
+            text-align: center; 
+        }
+        .box2 li{ /* box2 li  안에를 말함*/
+            display: inline-block;
+            border: 1px solid red;
+            height: 50px;
+            line-height:50px;
+            width: 100px;
+            text-align:center;
+            background-color: rgb(49, 253, 253);
+            color: wheat;
+        
+        }
+
+        .box2 li a {
+
+            color: rgb(255, 255, 255);
+            text-decoration: none;
+        }
+
+
+/* 문제1========================================================================= */
+        .box{
+    
+            background-color: black;
+         
+            text-align: center;  /* 블럭에서만 가능 */
+        }
+        .gnb li{
+
+            display: inline-block;
+            border: 1px solid black;
+            height: 60px;
+            line-height:60px;
+            width: 70px;
+            text-align: center;
+    
+
+        }
+        .gnb li a {
+            color: gainsboro;
+            text-decoration:  none; /* 밑줄제거 */
+        }
+
+        .box ul :hover{background-color: rgb(81, 83, 81);}
+
+    </style>
+
+</head>
+<body>
+    <!-- 문제 -->
+    <div class="box">
+        <ul class="gnb">
+            <li><a href="">메뉴1</a></li>
+            <li><a href="">메뉴2</a></li>
+            <li><a href="">메뉴3</a></li>
+            <li><a href="">메뉴4</a></li>
+            <li><a href="">메뉴5</a></li>
+            <li><a href="">메뉴6</a></li>
+
+        </ul>
+    </div>
+
+
+
+    <ul class="box2">
+        <li><a href="">MENU1</a></li>
+        <li><a href="">MENU1</a></li>
+        <li><a href="">MENU1</a></li>
+        <li><a href="">MENU1</a></li>
+        <li><a href="">MENU1</a></li>
+      
+    </ul>
+
+
+</body>
+</html>

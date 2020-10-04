@@ -1,0 +1,750 @@
+
+
+$(document).ready(function() {
+
+});
+
+function makePdf(table, pl, name){
+	html2canvas(document.getElementById(table), {
+		onrendered: function(canvas) {
+			//document.body.appendChild(canvas);
+			var imgData = canvas.toDataURL('image/png', 1.0);
+			var width = ( canvas.width * 0.26458333 );
+
+			if( pl == 'l' ){
+				if( width >= 287 ){
+				    width = 287;
+				}
+				var doc = new jsPDF(pl, 'mm', [210,297]);  // One of "portrait" or "landscape" (or shortcuts "p" (Default), "l")
+			}else{
+				if( width >= 200 ){
+					width = 200;
+				}
+				var doc = new jsPDF(pl, 'mm', [297,210]);  // One of "portrait" or "landscape" (or shortcuts "p" (Default), "l")
+			}
+			doc.addImage(imgData, 'png', 5, 5, width, 0);
+			doc.save(name +'.pdf');
+		}
+	});
+}
+
+
+function excel(name, table){
+	var dt = new Date();
+	var day = dt.getDate();
+	var month = dt.getMonth() + 1;
+	var year = dt.getFullYear();
+	var hour = dt.getHours();
+	var mins = dt.getMinutes();
+	var postfix = year + "-" + month + "-" + day;
+	//creating a temporary HTML link element (they support setting file names)
+	var a = document.createElement('a');
+	//getting data from our div that contains the HTML table
+	var data_type = 'data:application/vnd.ms-excel';
+	var table_div = document.getElementById(table);
+	var table_html = table_div.outerHTML.replace(/ /g, '%20');
+	a.href = data_type + ', ' + table_html;
+	//setting the file name
+	a.download = name +'-' + postfix + '.xls';
+	//triggering the function
+	a.click();
+	//just in case, prevent default behaviour
+	//e.preventDefault();
+}
+
+
+var win=null;
+function printPage(printThis)  {
+	var obj = document.getElementById(printThis).outerHTML;
+	win = window.open();
+	self.focus();
+	win.document.open();
+	win.document.write('<'+'html'+'><'+'head'+'>');
+	win.document.write('<'+'style'+'>body, td { font-family: Verdana; font-size: 6pt;} table{border:1px solid #cecece}<'+'/'+'style'+'>');
+	win.document.write('<'+'/'+'head'+'><'+'body'+'>');
+	win.document.write(obj);
+	win.document.write('<'+'/'+'body'+'><'+'/'+'html'+'>');
+	win.document.close();
+	win.print();
+	win.close();
+}
+
+/*
+
+	win.document.write('<link href="/assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/css/animate.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/css/style.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/css/style-responsive.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/css/theme/default.css" rel="stylesheet" id="theme" />');
+
+
+	win.document.write('<link href="/assets/plugins/jquery-jvectormap/jquery-jvectormap-1.2.2.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/plugins/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" />');
+    win.document.write('<link href="/assets/plugins/gritter/css/jquery.gritter.css" rel="stylesheet" />');
+
+	
+	win.document.write('<link href="/assets/plugins/DataTables/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/assets/plugins/DataTables/extensions/Responsive/css/responsive.bootstrap.min.css" rel="stylesheet" />');
+	win.document.write('<link href="/_admin.css" rel="stylesheet" />');
+	
+
+*/
+
+function pdfSave(table){
+	var dt = document.getElementById(table).outerHTML;
+	hFrame.location.href = '/pdf.html?data='+ dt;
+}
+
+function fileDelete(idx, c, table){
+	if( confirm('파일을 삭제 하시겠습니까?') == true ){
+		$.post( "../_server/attachDelete.html",{idx:idx, c:c, table:table},function(data){	      
+			//console.log(data);
+			document.location.reload(true);
+	    }, "json");
+	}
+}
+
+
+/* 교육과정 view */
+function viewClassviewModal(idx){
+	var url = "../_popup/_classView.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'tail'},function(data){	
+
+	            $("#modalIdx").val(data.idx);
+	            $("#name").val(data.name);
+
+	    	}, "json");	
+	    }else{
+
+		}
+
+	}, "html");			
+}
+/* 교육결과 등록 모달 */
+
+
+/* 교육생등록 모달 */
+
+
+/* 교육생view 모달 */
+function stuviewModal(idx){
+	var url = "../_popup/_stuview.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'tail'},function(data){	
+
+	            $("#modalIdx").val(data.idx);
+	            $("#name").val(data.name);
+
+	    	}, "json");	
+	    }else{
+
+		}
+
+	}, "html");			
+}
+
+
+/* 교육생상담등록 모달 */
+
+
+/* 교육생상담 view 모달 */
+function counselviewModal(idx){
+	var url = "../_popup/_counselview.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'tail'},function(data){	
+
+	            $("#modalIdx").val(data.idx);
+	            $("#name").val(data.name);
+
+	    	}, "json");	
+	    }else{
+
+		}
+
+	}, "html");			
+}
+
+/* 환급액 등록 */
+
+
+
+/* 교과목 등록 */
+
+
+
+/* 평가 기본 등록 */
+
+
+
+/* 평가 등록 */
+
+
+
+
+
+/* 수료자명부 */
+function personModal(idx){
+	var url = "../_popup/_person.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'tail'},function(data){	
+
+	            $("#modalIdx").val(data.idx);
+	            $("#name").val(data.name);
+
+	    	}, "json");	
+	    }else{
+
+		}
+
+	}, "html");			
+}
+
+
+
+
+/* 직원등록 */
+
+
+/* 강사등록 */
+
+
+
+function viewTailModal(idx){
+	var url = "../_popup/_tailReg.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'tail'},function(data){	
+
+	            $("#modalIdx").val(data.idx);
+	            $("#name").val(data.name);
+
+	    	}, "json");	
+	    }else{
+
+		}
+
+	}, "html");			
+}
+
+
+function viewStoreModal(idx){
+	var url = "../_popup/_storeWrite.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+
+	    $("#basicModal").draggable({
+		      handle: ".panel-heading"
+		});
+
+	    CKEDITOR.replace( 'memo', {
+	        filebrowserUploadUrl: '/man/_server/ckupload.html'
+	    }); 
+
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'board'},function(data){	
+
+	            $("#boardIdx").val(data.idx);
+	            $("#subject").val(data.subject);
+                $("#memo").val(data.memo);
+
+                if( chTxt(data.attach) != "" ){
+                	var attach = '<div style="padding:10px">[<a href="javascript:;" style="color:red" onclick="delBoardFile('+ data.idx +', this)">Del</a>] <a href="/man/down.html?idx='+ data.idx +'" target="_blank">'+ data.attach_name +'</a></div>';
+                	$("#attachF").append(attach);
+                }
+
+
+	    	}, "json");	
+	    }
+
+	}, "html");			
+}
+
+function viewFaqModal(idx){
+	var url = "../_popup/_faqWrite.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+
+	    $("#basicModal").draggable({
+		      handle: ".panel-heading"
+		});
+
+	    CKEDITOR.replace( 'memo', {
+	        filebrowserUploadUrl: '/man/_server/ckupload.html'
+	    }); 
+
+	    CKEDITOR.replace( 'reply', {
+	        filebrowserUploadUrl: '/man/_server/ckupload.html'
+	    }); 
+
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'board'},function(data){	
+
+	            $("#boardIdx").val(data.idx);
+	            $("#subject").val(data.subject);
+                $("#memo").val(data.memo);
+                $("#reply").val(data.reply);
+
+	    	}, "json");	
+	    }
+
+	}, "html");			
+}
+
+
+
+
+
+
+
+
+
+function viewQuizModal(idx){
+	var url = "../_popup/_quizReg.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'quiz'},function(data){	
+
+
+	            $("#modalIdx").val(data.idx);
+	            $("#lan").val(data.lan);
+				$("#memo").val(data.memo);
+
+	    	}, "json");	
+	    }else{
+
+		}
+
+	}, "html");			
+}
+
+
+function viewContModal(idx){
+	var url = "../_popup/_contReg.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'contents'},function(data){	
+
+	            //console.log(data);
+
+	            $("#modalIdx").val(data.idx);
+	            $("#name").val(data.name);
+                $("#sumSecond").val(data.sumSecond);
+                $("#chasi").val(data.chasi);
+                $("#fileUrl").val(data.fileUrl);
+				$("#memo").val(data.memo);
+
+                $("input:radio[name='lecStat']:radio[value='"+ data.lecStat +"']").prop("checked",true);
+
+				CKEDITOR.replace( 'memo', {
+					filebrowserUploadUrl: '/man/_server/ckupload.html'
+				});
+
+	    	}, "json");	
+	    }else{
+			CKEDITOR.replace( 'memo', {
+				filebrowserUploadUrl: '/man/_server/ckupload.html'
+			}); 
+		}
+
+	}, "html");			
+}
+
+
+
+function viewClassModal(idx){
+	var url = "../_popup/_classReg.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    CKEDITOR.replace( 'memo', {
+	        filebrowserUploadUrl: '/man/_server/ckupload.html'
+	    }); 
+   
+
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'class'},function(data){	
+
+
+	            $("#classIdx").val(data.idx);
+	            $("#name").val(data.name);
+                $("#memo").val(data.memo);
+                $("#stDayM").val(data.stDay);
+                $("#enDayM").val(data.enDay);
+
+				//console.log( $('#stDayM').datepicker );
+
+				$('#stDayM').datepicker({
+					todayHighlight: true,
+					format: "yyyy-mm-dd",
+					date: '2016-12-22',
+					language: "kr"
+				});
+
+				$('#enDayM').datepicker({
+					todayHighlight: true,
+					format: "yyyy-mm-dd",
+					language: "kr"
+				});
+                
+
+                $("input:radio[name='ing']:radio[value='"+ data.ing +"']").prop("checked",true);
+
+
+
+	    	}, "json");	
+	    }else{
+			
+			$('#stDayM').datepicker({
+				todayHighlight: true,
+				format: "yyyy-mm-dd",
+				language: "kr"
+			});
+
+			$('#enDayM').datepicker({
+				todayHighlight: true,
+				format: "yyyy-mm-dd",
+				language: "kr"
+			});
+		}
+
+	}, "html");			
+}
+
+
+function viewComModal(idx){
+	var url = "../_popup/_comReg.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+	    if(idx != ""){
+	    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'company'},function(data){	
+
+
+	            $("#idx").val(data.idx);
+	            $("#name").val(data.name);
+                $("#person").val(data.person);
+                $("#phone").val(data.phone);
+
+	    	}, "json");	
+	    }
+
+	}, "html");			
+}
+
+
+function viewAdminModal(idx){
+
+
+	
+
+	var url = "../_popup/_adminReg.html";
+	$.post( url,{idx:0},function(data){	
+
+		$("#modalContent").html(data);
+		$('#basicModal').modal('show');
+
+		if(idx != ""){
+			$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'admin'},function(data){	
+
+				$("#modalIdx").val(data.idx);
+				$("#name").val(data.name);
+				$("#id").val(data.id);
+
+				$("#id").prop('readonly', true);
+
+				if( data.m1 == "1" ){ $('#m1').prop('checked',true);  }
+				if( data.m2 == "1" ){ $('#m2').prop('checked',true);  }
+				if( data.m3 == "1" ){ $('#m3').prop('checked',true);  }
+				if( data.m4 == "1" ){ $('#m4').prop('checked',true);  }
+				if( data.m5 == "1" ){ $('#m5').prop('checked',true);  }
+				if( data.m6 == "1" ){ $('#m6').prop('checked',true);  }
+				if( data.m7 == "1" ){ $('#m7').prop('checked',true);  }
+				if( data.m8 == "1" ){ $('#m8').prop('checked',true);  }
+
+				$("input:radio[name='use']:radio[value='"+ data.use +"']").prop("checked",true);
+
+			}, "json");	
+		}else{
+			$("#id").prop('readonly', false);
+		}
+
+
+	}, "html");	
+	
+	
+}
+
+
+function viewMemModal(idx){
+
+	var url = "../_popup/_memReg.html";
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show');
+
+	    $.post( "_server/selectCompany.html",{idx:0},function(data){	
+	    	$("#comF").html(data);
+
+		    if(idx != ""){
+		    	$.post( "../_server/basicSelect.html",{cols:'', idx:idx, table:'member'},function(data){	
+
+
+		            $("#idx").val(data.idx);
+		            $("#name").val(data.name);
+	                $("#company").val(data.company);
+	                $("#id").val(data.id);
+	                $("#phone").val(data.phone);
+
+					$("input:radio[name='mType']:radio[value='"+ data.mType +"']").prop("checked",true);
+	                $("input:radio[name='stat']:radio[value='"+ data.stat +"']").prop("checked",true);
+
+
+
+					if( chTxt(data.attach) == true ){
+						$('#attachF').html('<img src="'+ data.attach +'" width="100px">');
+					} 
+
+		    	}, "json");	
+		    }
+
+
+    	}, "html");	
+
+	}, "html");			
+}
+
+function hidePageModal(){
+	$('#basicModal').modal('hide');			
+}
+//모달팝업 끝
+
+
+
+
+
+function deleteCompany(idx){
+	if( confirm('삭제 하시겠습니까?') ){
+		$.post( "../_server/basicDelete.html",{idx:idx, table:'company'},function(data){	
+    		alert("삭제 되었습니다.");
+    		document.location.reload();
+    	}, "html");	
+	}
+}
+
+
+function dayAdd(stDay, enDay, plusDay){
+
+	if( plusDay == "all" ){
+		$("#"+ stDay).val('');
+		$("#"+ enDay).val('');
+	}else{
+
+		var today = new Date();
+
+	    var year  = today.getFullYear();
+		var month = setNum10( today.getMonth() + 1 );
+		var day   = setNum10( today.getDate() );
+
+		$("#"+ enDay).val(year +"-"+ month +"-"+ day);
+
+	    today = new Date();
+		today.setDate(today.getDate() - plusDay); 
+		year  = today.getFullYear();
+		month = setNum10( today.getMonth() + 1 );
+	    day   = setNum10( today.getDate() );
+
+		$("#"+ stDay).val(year +"-"+ month +"-"+ day);
+
+	}
+}
+
+
+function setViewEmail(obj, targ){
+	var email = $(obj).val();
+	$("#"+ targ).val(email);
+}
+
+
+function checkBoxAll(obj){
+	$(".subCheckbox").prop("checked", $(obj).prop("checked") );
+}
+
+
+function tableDelete(idx, table){
+	if( confirm("삭제 하시겠습니까?") ){
+    	$.post( "../_server/basicDelete.html",{idx:idx, table:table},function(data){	
+    		alert("삭제 되었습니다.");
+    		document.location.reload(true);
+    	}, "html");	
+	}
+}
+
+
+function selectDelete(table){
+	var idx = "";
+	var ch = $(".subCheckbox");
+	for(var k = 0 ; k < ch.length ; k++ ){
+		if( $(ch[k]).prop("checked") == true ){
+			idx += $(ch[k]).val() +",";
+		}
+	}
+
+	//console.log(idx);
+	if(idx == ""){
+		alert("선택된 게시물이 없습니다.");
+	}else{
+		if( confirm("삭제 하시겠습니까?") ){
+	    	$.post( "../_server/basicDelete.html",{idx:idx, table:table},function(data){	
+	    		alert("삭제 되었습니다.");
+	    		document.location.reload();
+	    	}, "html");	
+		}
+	}
+}
+
+
+function setNum10(num){
+
+	if( num < 10 ){
+		num = "0" + num;
+	}
+	return num;
+}
+
+
+
+function viewModal(url){
+	if( url == "" ){
+		url   = $("#samUrl").val();
+	}
+	
+	$.post( url,{idx:0},function(data){	
+
+        $("#modalContent").html(data);
+	    $('#basicModal').modal('show')
+
+	}, "html");			
+}
+
+function hideModal(){
+	$('#basicModal').modal('hide');			
+}
+
+
+
+function chTxt( txt ){
+
+    var txt = $.trim(txt);
+
+    if( txt == "" ){ return false; }
+    if( typeof(txt) == "undefined" ){ return false; }
+    if( typeof(txt) == "null" ){ return false; }
+	//if( isNaN(txt) == true ){ return false; }
+    
+	//console.log(  typeof(txt) );
+
+    return true;
+
+}
+
+function comma(num){
+    var len, point, str; 
+       
+    num = num + ""; 
+    point = num.length % 3 ;
+    len = num.length; 
+   
+    str = num.substring(0, point); 
+    while (point < len) { 
+        if (str != "") str += ","; 
+        str += num.substring(point, point + 3); 
+        point += 3; 
+    } 
+     
+    return str;
+ 
+}
+
+
+function onlyNumber(el) { 
+    //el.value = el.value.replace(/\D/g,''); 
+	//if(el.value == ""){
+		//el.value = 0;
+	//}
+
+	//if( isNaN(txt) == true ){ return false; }
+
+
+
+	var txt = $(el).val();
+	txt = parseInt(txt);
+
+	if( isNaN(txt) == true ){
+		txt = '';
+	}
+
+	if( chTxt(txt) == true ){
+	    $(el).val(txt);
+	}else{
+		$(el).val('');
+	}
+
+} 
+
+function cc(txt){
+	console.log(txt);
+}
+
+
+

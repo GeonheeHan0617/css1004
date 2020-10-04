@@ -1,0 +1,300 @@
+$(document).ready(function() {
+
+	//숫자만 체크
+	 $(".numberOnly").keyup(function(){
+	  /* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 , 8 : backspace, 9 : tab ,46 : delete, 37 : 왼쪽방향키 , 39 : 오른쪽방향키 */
+	  var keyID = event.which;
+	 
+	  
+	  if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID == 8 || keyID == 9 || keyID == 46 || keyID == 190 || keyID == 37 || keyID == 39 || keyID == 110  || keyID == 109 || keyID == 189){
+	   this.value = this.value;
+	  }else{
+	   alert("숫자만 입력 가능합니다.");
+	   this.value = this.value.replace(/[^0-9\.]/g, ''); 
+	  }  
+	 });
+	});
+
+function number_check(){
+	$(".numberOnly").keyup(function(){
+	  /* 48~57:일반 숫자키 코드, 96~105:숫자키패드 숫자키 코드 , 8 : backspace, 9 : tab ,46 : delete, 37 : 왼쪽방향키 , 39 : 오른쪽방향키 */
+	  var keyID = event.which;
+
+	  if( ( keyID >=48 && keyID <= 57 ) || ( keyID >=96 && keyID <= 105 ) || keyID == 8 || keyID == 9 || keyID == 46 || keyID == 190 || keyID == 37 || keyID == 39 || keyID == 110  || keyID == 109 || keyID == 189){
+	   this.value = this.value;
+	  }else{
+	   alert("숫자만 입력 가능합니다.");
+	   this.value = this.value.replace(/[^0-9\.]/g, ''); 
+	  }  
+	 });
+
+}
+
+
+function win_open(content){
+  
+  window.open(content,"","left=150,top=0,width=720,height=900,scrollbars=yes");
+
+}
+
+function win_open_a(content){
+		  
+  window.open(content,"memo","left=300,top=200,width=700,height=250,scrollbars=yes");
+
+}
+
+
+function check_abun(aobj) 
+ {		 
+	objdoc = eval(document.getElementsByName("abun"));
+    objNum = objdoc.length; 
+	obj = document.nicesms.abun;
+	//alert(objNum);
+ 
+    if ( objNum == 1 ) 
+    { 
+       obj.checked = aobj.checked; 
+    } 
+    else 
+    { 
+       for ( i = 0; i < objNum; i++ ) 
+      { 
+         obj[i].checked = aobj.checked; 
+      } 
+    }
+ }
+
+ function check_bun(num) 
+ {		 
+	objdoc = eval(document.getElementsByName("abun"));
+    objNum = objdoc.length; 
+	obj = document.nicesms.abun;
+	obj1 = document.nicesms.nps;
+	//alert(objNum);
+	arri = num / 2;
+    if ( objNum == 1 ) 
+    { 
+	   if (!obj1[num].checked && !obj1[num+1].checked)
+	   {
+			obj.checked = false; 
+	   }
+	   else{
+			obj.checked = true; 
+	   }
+    } 
+    else 
+    { 
+	   if (!obj1[num].checked && !obj1[num+1].checked)
+	   {
+			 obj[arri].checked = false; 
+	   }
+	   else{
+			 obj[arri].checked = true;  
+	   }
+    }
+ }
+
+
+function check_idx_all(){		 
+
+	objdoc = eval(document.getElementsByName("idx"));
+    objNum = objdoc.length; 
+	obj = document.nicesms.idx;
+	//alert(objNum);
+
+    if ( objNum == 1 ) 
+    { 
+       obj.checked = document.nicesms.idx_all.checked; 
+    } 
+    else 
+    { 
+       for ( i = 0; i < objNum; i++ ) 
+      { 
+         obj[i].checked = document.nicesms.idx_all.checked; 
+      } 
+    }
+
+//	check_abun(document.nicesms.idx_all);
+ }
+
+
+
+function check_nps() 
+ {		 
+	objdoc = eval(document.getElementsByName("nps"));
+    objNum = objdoc.length; 
+	obj = document.nicesms.nps;
+	//alert(objNum);
+ 
+    if ( objNum == 1 ) 
+    { 
+       obj.checked = document.nicesms.checkall.checked; 
+    } 
+    else 
+    { 
+       for ( i = 0; i < objNum; i++ ) 
+      { 
+         obj[i].checked = document.nicesms.checkall.checked; 
+      } 
+    }
+	
+	check_abun(document.nicesms.checkall);
+ }
+
+ function check_nps1() 
+ {		 
+	objdoc = eval(document.getElementsByName("nps"));
+    objNum = objdoc.length; 
+	obj = document.nicesms.nps;
+	//alert(objNum);
+ 
+    if ( objNum == 1 ) 
+    { 
+       obj[0].checked = document.nicesms.checkall1.checked; 
+    } 
+    else 
+    { 
+       for ( i = 0; i < objNum; i=i+2 ) 
+      { 
+         obj[i].checked = document.nicesms.checkall1.checked; 
+      } 
+    } 
+	check_abun(document.nicesms.checkall1);
+ }
+
+  function check_nps2() 
+ {		 
+	objdoc = eval(document.getElementsByName("nps"));
+    objNum = objdoc.length; 
+	obj = document.nicesms.nps;
+	//alert(objNum);
+ 
+    if ( objNum == 1 ) 
+    { 
+       obj[1].checked = document.nicesms.checkall2.checked; 
+    } 
+    else 
+    { 
+       for ( i = 1; i < objNum; i=i+2 ) 
+      { 
+         obj[i].checked = document.nicesms.checkall2.checked; 
+      } 
+    } 
+	check_abun(document.nicesms.checkall2);
+ }
+
+ function display_item()
+ {
+	document.all["dis_menu1"].style.visibility="hidden";
+	document.all["dis_menu2"].style.visibility="visible";
+	document.all["dis_main"].style.visibility="visible";
+ }
+
+  function hide_item()
+ {
+	document.all["dis_menu2"].style.visibility="hidden";
+	document.all["dis_menu1"].style.visibility="visible";
+	document.all["dis_main"].style.visibility="hidden";
+ }
+
+ function item_check(){
+	document.searchForm.item_c.value = "yes";
+ }
+
+ function message_submit(){
+	window.open('','winsms','width=650,height=450');
+	document.nicesms.target = "winsms";
+	document.nicesms.action = "../nicesms/sms_all.asp";
+	document.nicesms.submit();
+ }
+
+
+ function lms_message_submit(){
+	window.open('','winsms','width=800,height=450');
+	document.nicesms.target = "winsms";
+	document.nicesms.action = "../nicesms1/sms_all_test.asp";
+	document.nicesms.submit();
+ }
+
+
+
+
+ function input_submit(){
+	document.nicesms.action = "memo_ok.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+  function input_submit_off(){
+	document.nicesms.action = "memo_ok_off.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+ function input_submit1(){
+	document.nicesms.action = "memo_ok1.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+ function display_memo()
+ {
+	document.all["Layer1"].style.display="block";
+ }
+
+ function hide_memo()
+ {
+	document.all["Layer1"].style.display="none";
+ }
+
+ function goCharge(bun_num,bun_seq){
+	document.nicesms.ch_bun.value = bun_num ;
+	document.nicesms.ch_seq.value = bun_seq ;
+	document.nicesms.action = "charge_ok.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+  function goCharge_lose(bun_num,bun_seq){
+	document.nicesms.ch_bun.value = bun_num ;
+	document.nicesms.ch_seq.value = bun_seq ;
+	document.nicesms.action = "charge_lose_ok.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+ function goCharge1(){
+	document.nicesms.action = "charge_ok.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+ function goCharge_lose1(){
+	document.nicesms.action = "charge_lose_ok.asp";
+	document.nicesms.target = "fmemo"
+	document.nicesms.submit();
+ }
+
+   function isNum(){ 
+	 var key = event.keyCode;
+     if(!(key==8||key==9||key==13||key==46||key==144||(key>=48&&key<=57)||key==110||key==190)){ 
+        alert('숫자만 입력 가능합니다'); 
+        event.returnValue = false; 
+   } 
+}
+
+function goSingSubmit(){
+	if (document.TestInput.output.value=="")
+	{
+		alert("서명을 하지않으면 제출할 수 없습니다. 서명을 하고 제출해주세요.");
+		return false;
+	}
+	else{
+		if (confirm("시험을 제출하면 다시 응시할 수 없습니다. 제출하시겠습니까?"))
+		{
+			 $('input[name="sign_image"]').val(api.getSignatureImage());
+			document.getElementById('mw_loading').style.display='block';
+			document.TestInput.submit();
+		}
+	}
+}

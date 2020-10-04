@@ -1,0 +1,319 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    
+    <!-- j쿼리 순서 추가 (순서변동) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- 순서 바꾸면 동작됨 -->
+    <script src="js/bootstrap.js"> </script>  
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css"> <!-- boardstyle -->
+
+
+</head>
+<body>
+
+<!-- header  -->
+    <header>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+
+
+
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+
+      <!-- 로고를 넣는 영역 -->
+      <a class="navbar-brand" href="http://bootstrapk.com/components/"><img src="img/logo.svg" width="30"></a>
+    </div>
+
+    <!-- 네비바 안에 포함되는 콘탠츠 -->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+
+
+      <!-- 우측 -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+
+            <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+            </a>
+            <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-share"></span>  로그인</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span>  회원가입</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-modal-window"></span>  메인화면</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>  About</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">상품 배송 및 조회</li>
+            <li><a href="#">배송 주소지 변경</a></li>
+            <li><a href="#">배송 이력</a></li>
+            <li><a href="#">불만 사항</a></li>
+            <li><a href="#">공지 사항</a></li>
+
+          </ul>
+        </li>
+      </div>
+      
+      
+ 
+    </div>
+  </div>
+</nav>
+
+
+     <!-- <br>    
+
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+
+            <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+            </a>
+            <ul class="dropdown-menu">
+            <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+            <li><a href="#">회원가입</a></li>
+            <li><a href="#">소개</a></li>
+            <li><a href="#">다른 경로</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Dropdown header 2</li>
+            <li><a href="#">About Us</a></li>
+          </ul>
+        </li>
+      </div>
+ -->
+
+
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+      <!-- </ul> -->
+    </header>
+<!-- 본문1  <section> -->
+      <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators는 숨어있는 사진 개수 -->
+                    <ol class="carousel-indicators">
+                      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                      <li data-target="#myCarousel" data-slide-to="1"></li>
+                      <li data-target="#myCarousel" data-slide-to="2"></li>
+                    </ol>
+                
+                    <!-- Wrapper for slides는 사진 영역 -->
+                    <div class="carousel-inner">
+                      <div class="item active">
+                        <img src="img/[A]C1템플릿_PC.jpg" alt="사진 1" style="width:100%;">
+                      </div>
+                
+                      <div class="item">
+                        <img src="img/C1_PC1(18).jpg" alt="사진 2" style="width:100%;">
+                      </div>
+                    
+                      <div class="item">
+                        <img src="img/C1_PC1(19).jpg" alt="사진 3" style="width:100%;">
+                      </div>
+                    </div>
+                
+                    <!-- Left and right controls <좌우 버톤> -->
+                    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                      <span class="glyphicon glyphicon-chevron-left"></span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                      <span class="glyphicon glyphicon-chevron-right"></span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+      </section>
+
+      <!-- 본문2 -->
+      <section>
+          <div class="container-fluid">
+              <div class="row main-banner1">
+
+                    <div class="containner">
+                        <div class="banner-cap">
+                            안녕하세요!! 쿠팡 world에 오신 것을 환영합니다. <br>
+                        --<br>
+                            --
+
+
+                        </div>
+
+                        <div class="col-xs-12 col-md-6">
+                           
+
+
+                        </div>
+                        <div class="col-xs-12 col-md-6">
+                          흐름을 파악해보겠습니다. 
+                        </div>
+                    </div>
+           
+              </div>
+          </div>
+      </section>
+
+      <!-- 본문 3 -->
+      <section>
+          <div  class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h2>메인화면 그리드 <small>(쿠팡)</small></h2>
+                </div>
+            </div>
+            <!-- 상품화면 영역 -->
+            <Div class="row">
+                <ul class="prod-list">
+                <li class="col-xs-12 col-sm-6">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod1.jpg">
+                        
+                            <span class="arrow"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                                <span class="arrow hover"><i class="
+                                    glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                               
+                    </a>
+                </li>
+                <li class="col-xs-12 col-sm-6">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod2.jpg">
+                     
+                            <span class="arrow"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                                <span class="arrow hover"><i class="
+                                    glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>   
+                <li class="col-xs-12 col-sm-3">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod3.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>     
+                <li class="col-xs-12 col-sm-3">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod4.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>  
+                <li class="col-xs-12 col-sm-3">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod5.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>  
+                <li class="col-xs-12 col-sm-3">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod6.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>  
+                <li class="col-xs-12 col-sm-6">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod7.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>  
+                <li class="col-xs-12 col-sm-3">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod8.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>  
+                <li class="col-xs-12 col-sm-3">
+                    <a href="#" class="prod-link">
+                        <img src="img/prod9.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                    </a>
+                </li>
+                <li class="col-xs-12 col-sm-12">
+                    <a href="#" class="prod-link">
+                
+                        <img src="img/bannerunit_e8da165e-d3fe-45d8-9383-f05b67bfd361.jpg">
+                        <span class="arrow"><i class="
+                            glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                            <span class="arrow hover"><i class="
+                                glyphicon glyphicon-chevron-right"></i>구매하기</span>
+                        </li>  
+                </ul> 
+            </Div>
+
+          </div>
+      </section>
+
+<!-- footer -->
+      <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="footer-menu">
+                        <li><a href="">고객센터</a></li>
+                        <li><a href="">이용약관</a></li>
+                        <li><a href="">개인정보취급방침</a></li>
+                        <li><a href="">개인정보</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-lg-8 copyright">
+                    <a href="#">
+                    <img src="img/다운로드.png" width="200">
+                  
+                </a>    
+                <address> 
+                회사: 이천 SK하이닉스 <br>
+                도로명 주소: 경기 이천시 부발읍 경충대로 2091 (우)17336   
+                지번: 부발읍 아미리 712-7<br>
+                www.hynix.co.kr 
+
+031-5185-4114 대표번호   
+031-645-8000 FAX
+
+반도체 제조회사</address>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

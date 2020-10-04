@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    <!-- j쿼리 순서 추가 (순서변동) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    <!-- 순서 바꾸면 동작됨 -->
+    <script src="js/bootstrap.js"> </script>  
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css">
+
+   
+    
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+
+
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+
+                    <!-- 로고를 넣는 영역 -->
+                    <a class="navbar-brand" href="http://bootstrapk.com/components/"><img src="img/logo.svg"
+                            width="30"></a>
+                </div>
+
+                <!-- 네비바 안에 포함되는 콘탠츠 -->
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+
+
+                    <!-- 우측 -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+
+                            <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-modal-window"></span> 메인화면</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> About</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">상품 배송 및 조회</li>
+                                <li><a href="#">배송 주소지 변경</a></li>
+                                <li><a href="#">배송 이력</a></li>
+                                <li><a href="#">불만 사항</a></li>
+                                <li><a href="#">공지 사항</a></li>
+
+                            </ul>
+                        </li>
+                </div>
+
+
+
+            </div>
+            </div>
+        </nav>
+
+
+        <!-- <br>    
+        
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+        
+                    <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">소개</a></li>
+                    <li><a href="#">다른 경로</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Dropdown header 2</li>
+                    <li><a href="#">About Us</a></li>
+                  </ul>
+                </li>
+              </div>
+         -->
+
+
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+        <!-- </ul> -->
+    </header>
+
+    <section>
+        <div class="container">
+            <div class="row">
+                <aside class="col-sm-3 aside-mnue">
+                    <div class="aside-inner">
+                        <div class="menu1">
+                            <p> 
+                                <img src="img/profile.png">
+                                Geonhee
+                            </p>
+                            <ul>
+                                <li><a href="#">뉴스피드</a></li>
+                                <li><a href="#">메신저</a></li>
+                                <li><a href="#">watch동영상</a></li>
+                            </ul>
+                        </div>
+                        <div class="menu2">
+                            <p>-둘러보기-</p>
+                        <ul>
+                            <li><a href="#">기부 캠페인</a></li>
+                            <li><a href="#">페이지</a></li>
+                            <li><a href="#">그룹</a></li>
+                            <li><a href="#">이벤트</a></li>
+                            <li><a href="#">친구리스트</a></li>
+                        </ul>
+                        </div>
+                    </div>
+
+
+                </aside>
+
+                <!-- 게시글 뎃글 -->
+                <div class="col-sm-7 col-xs-12 section-inner">
+                    <h4>게시글을 등록하세요</h4>
+                    <div> 
+                        <div class="text-content">
+                            <textarea class="form-control" row="3"></textarea>
+                            <div class="text-group">
+                                <button type="button" class="btn btn-info left">이미지 업로드하기</button>
+                                <button type="button" class="btn btn-primary right">등록하기</button>
+
+                            </div>
+                        </div>  
+
+                        <!-- 타이틀 영역 하나 -->
+                        <div>
+                            <div class="title-inner">
+                                <div class="profile">
+                                    <img src="img/profile.png" alt="profile">
+                                </div>
+                        
+                                <div class="title">
+                                    <p>테스트</p>
+                                    <small>21시간</small>
+                                </div>
+                            </div>
+                            <!-- 내용역역 -->
+                            <div class="content-inner">
+                                <p>삶은 계속해서 끝없이 테스트 합니다.</p>
+                            </div>
+                            <!-- 이미지 영역 -->
+                            <div class="image-inner">
+                                <img src="img//facebook.jpg" alt="facebook">
+                            </div>
+                            <!-- 좋아요영역 -->
+                            <div class="like-inner">
+                                <img src="img/icon.jpg" alt="like" width="20">
+                        
+                            </div>
+                            <div class="link-inner">
+                                <a href="#"> <span> <i class="glyphicon glyphicon-thumbs-up"></i>좋아요</span> </a>
+                                <a href="#"> <span> <i class="glyphicon glyphicon-comment"></i>뎃글달기</span></a>
+                                <a href="#"> <span> <i class="glyphicon glyphicon-share-alt"></i>공유하기</span></a>
+                        
+                            </div>
+                        </div>
+                        <div>
+                            <div class="title-inner">
+                                <div class="profile">
+                                    <img src="img/profile.png" alt="profile">
+                                </div>
+                        
+                                <div class="title">
+                                    <p>테스트</p>
+                                    <small>2일전</small>
+                                </div>
+                            </div>
+                            <!-- 내용역역 -->
+                            <div class="content-inner">
+                                <p>잼잼하게 놀기.</p>
+                            </div>
+                            <!-- 이미지 영역 -->
+                            <div class="image-inner">
+                                <img src="img/.back.jpg" alt="facebook">
+                            </div>
+                            <!-- 좋아요영역 -->
+                            <div class="like-inner">
+                                <img src="img/icon.jpg" alt="like" width="20">
+                        
+                            </div>
+                            <div class="link-inner">
+                                <a href="#"> <span> <i class="glyphicon glyphicon-thumbs-up"></i>좋아요</span> </a>
+                                <a href="#"> <span> <i class="glyphicon glyphicon-comment"></i>뎃글달기</span></a>
+                                <a href="#"> <span> <i class="glyphicon glyphicon-share-alt"></i>공유하기</span></a>
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <aside class="col-sm-2 aside-mnue">
+                    <div class="aside-inner">
+                        <div class="menu"> 
+                            <ul>
+                                <li><a href="#">목록</a></li>
+                                <li><a href="#">목록1</a></li>
+                                <li><a href="#">목록2</a></li>
+                                <li><a href="#">목록3</a></li>
+                                <li><a href="#">목록4</a></li>
+                                <li><a href="#">목록5</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="footer-menu">
+                        <li><a href="">고객센터</a></li>
+                        <li><a href="">이용약관</a></li>
+                        <li><a href="">개인정보취급방침</a></li>
+                        <li><a href="">개인정보</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-lg-8 copyright">
+                    <a href="#">
+                        <img src="img/쿠팡.png" width="250">
+
+                    </a>
+                    <address>
+
+                        쿠팡(주) | 대표이사 : 김범석,고명주,박대준
+                        서울시 송파구 송파대로 570
+                        사업자 등록번호 : 120-88-00767
+                        통신판매업신고 : 2017-서울송파-0680
+                        https://www.coupang.com/
+                        <br>
+                        365고객센터 | 전자금융거래분쟁처리담당
+                        1577-7011
+                        서울시 송파구 송파대로 570
+                        email : help@coupang.com
+
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+
+</body>
+
+</html>

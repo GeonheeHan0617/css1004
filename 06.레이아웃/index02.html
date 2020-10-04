@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        .list {border:1px solid #777777; width: 50%;  margin: 0 auto; overflow: hidden;}
+        .inner {float: left; width: 25%; border: 1px solid #aa0000;  box-sizing: border-box;}
+
+        .content{overflow: hidden;}
+        .left{
+            float: left;
+        }
+        .right{float: right;}
+
+        .left >span {
+            display: block; /* span은 인라인 요소이기 때문에 세로로 배치하려면 블럭형태로 변경--세로로 변경됨 */
+        }
+
+        /* clear:both로 float 으로 정렬하던 탑쌓기를 해제한다.   */
+        .clear {clear: both;}   
+    </style>
+
+</head>
+<body>
+    
+    <div class ="list">
+
+        <div class="inner">
+            <!-- 블럭쌓기 -->
+            <img src="img/bgimg.png" alt="">
+            <div class="content">   
+                <!-- <span></span>
+                <span></span>
+                <span></span> -->
+                <div class="left">sdf
+                        <span>left</span>
+                        <span>left</span>
+                        <span>left</span>
+
+                </div>
+
+
+                <div class="right">sdf
+                        <div>sdf</div>
+                        <div>sdf</div>
+                        <div>sdf</div>
+                    <div class="clear">우
+                        <span>우</span>
+                        <span>우</span>
+                        <span>우</span>
+                    </div>
+
+                </div>
+
+                <!-- <div>sdf</div> -->
+            </div>
+
+        </div>
+        <div class="inner">
+            <img src="img/bgimg.png" alt="">
+        </div>
+    
+        <div class="inner">
+            <img src="img/bgimg.png" alt="">
+        </div>
+
+        <div class="inner">
+            <img src="img/bgimg.png" alt="">
+        </div>
+
+    </div>
+
+
+</body>
+</html>

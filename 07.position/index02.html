@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        /*부모요소 position relative가 들어간다. 들어가지 않으면 body기준으로 좌표가 잡힘. */
+        .wrap{
+            overflow: hidden; width: 900px; margin: 0 auto ; position: relative;
+        }   
+
+        .box{ float: left;  background-color: turquoise; width: 300px; height: 300px;
+            }
+        
+        /* postion relative; 각각 box, wrap 추가해서 확인 모서리 왼쪽 멘 위로감*/ 
+        .pos{
+            position: absolute; top:0px; left: 0px; background-color: violet;
+        }
+        
+    </style>
+
+
+</head>
+<body>
+<div class="wrap">
+
+    <div class="box">박스1</div>
+    <div class="box">박스1</div>
+    <div class="box">박스1</div>
+    <div class="box">
+        박스1
+        <div class="pos">yoy</div>
+    </div>
+ 
+
+
+</div>
+
+</body>
+</html>

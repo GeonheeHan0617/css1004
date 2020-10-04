@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+
+
+    <style>
+        .list-wrap{ 
+            width: 20%;
+            margin: 0 auto;
+            border: 1px solid olive;
+            position: relative;
+            padding: 10px;
+        }
+
+        .list-img { /* 이미지 영역 */
+            position: absolute;
+            top:10px;
+            left:10px;
+            border: 2px solid black;
+         
+        }
+
+        .list-content{
+            padding-left: 65px;
+            box-sizing: border-box; /* box-modedlau width* border * padding 이 실제 박스 넓이 인데,border과 border가 박스 크기에 추가되지 않는 크기 유지 */
+        }
+
+.list-content textarea {
+    width: 300px;
+    resize: 100px;
+    box-sizing: border-box;
+    resize: vertical;
+    height: 56px;
+
+}
+.list-control{ 
+    padding-left: 70px;
+    overflow: hidden; /* 부모에 hidden */
+
+}
+.list-control .list-input{
+    float: left;
+
+}
+.list-control .list-input input{
+
+display: block;
+}
+
+
+.list-control .button{
+    float: right;
+}
+</style>
+
+</head>
+<body>
+    
+
+<div class="list-wrap">
+    <div class="list-img">
+        <img src="img/bgimg.png" height="50">
+    </div>
+
+    <div class="list-content">
+        <textarea placeholder="댓글을 입력하세요" ></textarea>
+    </div>
+
+    <div class="list-control"> 
+        <div class="list-input">
+
+            <input type="text">
+            <input type="text">
+
+        </div>
+        <button class="button"> 등록하기</button>
+    </div>
+    
+
+
+</div>
+
+
+</body>
+</html>

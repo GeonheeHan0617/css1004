@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    
+    <!-- j쿼리 순서 추가 (순서변동) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+    
+    <!-- 순서 바꾸면 동작됨 -->
+    <script src="js/bootstrap.js"> </script>  
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/joinform.css">
+    <link rel="stylesheet" href="css/bpardlist.css">
+    <link rel="stylesheet" href="css/mypage.css">
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+
+
+
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+
+                    <!-- 로고를 넣는 영역 -->
+                    <a class="navbar-brand" href="http://bootstrapk.com/components/"><img src="img/logo.svg"
+                            width="30"></a>
+                </div>
+
+                <!-- 네비바 안에 포함되는 콘탠츠 -->
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="active"><a href="#">Home</a></li>
+                        <li><a href="#">Page 1</a></li>
+                        <li><a href="#">Page 2</a></li>
+                        <li><a href="#">Page 3</a></li>
+                    </ul>
+
+
+                    <!-- 우측 -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+
+                            <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-user"></span> 회원가입</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-modal-window"></span> 메인화면</a></li>
+                                <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span> About</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li class="dropdown-header">상품 배송 및 조회</li>
+                                <li><a href="#">배송 주소지 변경</a></li>
+                                <li><a href="#">배송 이력</a></li>
+                                <li><a href="#">불만 사항</a></li>
+                                <li><a href="#">공지 사항</a></li>
+
+                            </ul>
+                        </li>
+                </div>
+
+
+
+            </div>
+            </div>
+        </nav>
+
+
+        <!-- <br>    
+        
+              <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+        
+                    <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                    </a>
+                    <ul class="dropdown-menu">
+                    <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+                    <li><a href="#">회원가입</a></li>
+                    <li><a href="#">소개</a></li>
+                    <li><a href="#">다른 경로</a></li>
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Dropdown header 2</li>
+                    <li><a href="#">About Us</a></li>
+                  </ul>
+                </li>
+              </div>
+         -->
+
+
+        <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+        <!-- </ul> -->
+    </header>
+    <section>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-md-10 col-lg-9 myinfo">
+                    <div class="titlebox">
+                        마이페이지
+                    </div>
+                    <ul class="nav nav-tabs tab-style">
+                        <li class="active"><a data-toggle="tab" href="#info">Home</a></li>
+                        <li><a data-toggle="tab" href="#menu1">Menu 1</a></li>
+                        <li><a data-toggle="tab" href="#menu2">Menu 2</a></li>
+                        <li><a data-toggle="tab" href="#menu3">Menu 3</a></li>
+                      </ul>
+                    
+                      <div class="tab-content">
+                        <div id="info" class="tab-pane fade in active"> <!-- #info 자바스크립동작중임 20.06.22 사용함--> 
+                        
+                            <p>*표시는 필수 사항입니다.</p>
+                        <form>
+                            <table class="table">
+                                <tbody class="m-control"> <!--  -->
+                                    <tr>
+                                        <td>*Id</td>
+                                        <td><input type="text" class="form-control sel"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>*이름</td>
+                                        <td><input type="text" class="form-control sel"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>*비밀번호</td>
+                                        <td><input type="password" class="form-control sel"placeholder="예시>1234567890pw"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>*비밀번호 확인</td>
+                                        <td><input type="text" class="form-control sel"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>이메일</td>
+                                        <td>
+                                            <input type="text" class="form-control sel2">@ <input type="text" class="form-control sel2" placeholder="naver.com"> </td>
+                                    </tr>
+                                    <tr>
+                                        <td>우편번호</td>
+                                        <td>
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="우편주소">
+                                                <div class="input-group-btn">
+                                                    <button class="btn btn-info"> 우편번호 찾기</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>*주소</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="기본주소" placeholder="">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>*상세주소</td>
+                                        <td>
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" placeholder="상세주소">
+                                            </div>
+                                        </td>
+                                    </tbody>
+                                </table>
+                            </form>
+
+                            <div class="titlefoot" align="center">
+                            <button type="button" class="btn btn-default">수정</button>
+                            <button type="button" class="btn btn-default">목록</button>
+
+                            </div>
+
+                        </div>
+                        <div id="menu1" class="tab-pane fade">
+                          <h3>메뉴 1</h3>
+                          <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <div id="menu2" class="tab-pane fade">
+                          <h3>메뉴 2</h3>
+                          <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                        </div>
+                        <div id="menu3" class="tab-pane fade">
+                          <h3>메뉴 3</h3>
+                          <p>Eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
+                        </div>
+                      </div>
+                </div> 
+            </div>
+        </div>
+    </section>
+
+    
+
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <ul class="footer-menu">
+                        <li><a href="">고객센터</a></li>
+                        <li><a href="">이용약관</a></li>
+                        <li><a href="">개인정보취급방침</a></li>
+                        <li><a href="">개인정보</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-xs-12 col-lg-8 copyright">
+                    <a href="#">
+                        <img src="img/쿠팡.png" width="250">
+
+                    </a>
+                    <address>
+
+                        쿠팡(주) | 대표이사 : 김범석,고명주,박대준
+                        서울시 송파구 송파대로 570
+                        사업자 등록번호 : 120-88-00767
+                        통신판매업신고 : 2017-서울송파-0680
+                        https://www.coupang.com/
+                        <br>
+                        365고객센터 | 전자금융거래분쟁처리담당
+                        1577-7011
+                        서울시 송파구 송파대로 570
+                        email : help@coupang.com
+
+                    </address>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

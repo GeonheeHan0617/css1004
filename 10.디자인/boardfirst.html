@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <link rel="stylesheet" href="css/bootstrap.css" >
+    <link rel="stylesheet" href="css/bootstrap-theme.css">
+    
+    <!-- j쿼리 순서 추가 (순서변동) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- 순서 바꾸면 동작됨 -->
+    <script src="js/bootstrap.js"> </script>  
+
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/bpardlist.css">
+
+
+</head>
+<body>
+
+<!-- header  -->
+<header>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <div class="navbar-header">
+    
+    
+    
+    
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+    
+    
+          <!-- 로고를 넣는 영역 -->
+          <a class="navbar-brand" href="http://bootstrapk.com/components/"><img src="img/logo.svg" width="30"></a>
+        </div>
+    
+        <!-- 네비바 안에 포함되는 콘탠츠 -->
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">Page 1</a></li>
+            <li><a href="#">Page 2</a></li>
+            <li><a href="#">Page 3</a></li>
+          </ul>
+    
+    
+          <!-- 우측 -->
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+    
+                <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                </a>
+                <ul class="dropdown-menu">
+                <li><a href="#"><span class="glyphicon glyphicon-share"></span>  로그인</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-user"></span>  회원가입</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-modal-window"></span>  메인화면</a></li>
+                <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign"></span>  About</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">상품 배송 및 조회</li>
+                <li><a href="#">배송 주소지 변경</a></li>
+                <li><a href="#">배송 이력</a></li>
+                <li><a href="#">불만 사항</a></li>
+                <li><a href="#">공지 사항</a></li>
+    
+              </ul>
+            </li>
+          </div>
+          
+          
+     
+        </div>
+      </div>
+    </nav>
+    
+    
+         <!-- <br>    
+    
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown">
+    
+                <a class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">정보관리
+                </a>
+                <ul class="dropdown-menu">
+                <li><a href="#"><span class="glyphicon glyphicon-share"></span> 로그인</a></li>
+                <li><a href="#">회원가입</a></li>
+                <li><a href="#">소개</a></li>
+                <li><a href="#">다른 경로</a></li>
+                <li class="divider"></li>
+                <li class="dropdown-header">Dropdown header 2</li>
+                <li><a href="#">About Us</a></li>
+              </ul>
+            </li>
+          </div>
+     -->
+    
+    
+            <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+          <!-- </ul> -->
+        </header>
+        <section>
+            <div class="container">
+                <h2> 상품리스트 </h2>
+                <div class="row list-inner"> 
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike1.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>199,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike2.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>15,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike3.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>99,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike4.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>235,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike5.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>60,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike6.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>83,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike7.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>34,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike8.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>84,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>       
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="prod-nike-inner">
+                            <a href="#">
+                                <img src="img/nike9.jpg" alt="1"> 
+                            </a>
+                            <div class="prod-content"> <!-- 부모요소로 사용함 -->
+                                <div class="info">
+                                    <span>New 나이키</span>
+                                    <span>라이프 스타일 </span>
+                                    <span>walker 슈즈</span>
+                                </div>
+                                <div class="price">
+                                    <strong>84,000원</strong>
+                                </div>
+                            </div>
+                            <!-- 이미지를 숨겨놓을 영역 -->
+                            <div class="prod-color">
+                                <ul>
+                                    <li> <img src="img/color1.jpg "alt="color1"></li>
+                                    <li> <img src="img/color2.jpg"alt="color2"></li>
+                                    <li> <img src="img/color3.jpg"alt="color3"></li>
+                                    <li> <img src="img/color4.jpg"alt="color4"></li>
+                                    <li> <img src="img/color5.jpg"alt="color5"></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 페이지 네이션 -->
+                    <div class="center">
+                                   
+                        <ul class="pagination">
+                          <li><a href="#">이전</a></li>
+                          <li class="active"><a href="#">1</a></li>                             
+                          <li><a href="#">2</a></li>
+                          <li><a href="#">3</a></li>
+                          <li><a href="#">4</a></li>
+                          <li><a href="#">5</a></li>
+                          <li><a href="#">다음</a></li>
+                        </ul>
+                      </div>
+       
+                    
+               
+                </div>
+            
+                
+            </div>
+            </div>
+        </section>
+
+
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <ul class="footer-menu">
+                            <li><a href="">고객센터</a></li>
+                            <li><a href="">이용약관</a></li>
+                            <li><a href="">개인정보취급방침</a></li>
+                            <li><a href="">개인정보</a></li>
+    
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-lg-8 copyright">
+                        <a href="#">
+                        <img src="img/쿠팡.png" width="200">
+                      
+                    </a>    
+                    <address> 
+                    회사: 이천 쿠팡 <br>
+                    도로명 주소: 경기 이천시 마장면 2091 (우)17336   
+                    지번: 부발읍 아미리 712-7<br>
+                    www.hynix.co.kr 
+    
+    031-5185-4114 대표번호   
+    031-645-8000 FAX
+    
+    반도체 제조회사</address>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</body>
+</html>
